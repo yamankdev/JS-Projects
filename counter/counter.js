@@ -21,11 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function increaseCount() {
     count++;
+    displayCount.classList.remove("negative");
+    displayCount.classList.add("positive");
     //   updateCount();
     document.getElementById("count").innerHTML = count;
   }
 
   function decreaseCount() {
+    displayCount.classList.remove("positive");
+    displayCount.classList.add("negative");
     if (count > 0) {
       count--;
     }
@@ -34,22 +38,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function resetCount() {
     count = 0;
+    displayCount.classList.remove("positive");
+    displayCount.classList.remove("negative");
     updateCount();
+    showMsg("The Count has been Reset!");
+  }
+
+  function showMsg(text) {
+    displayMsg.innerHTML = text;
+    setTimeout(() => {
+      displayMsg.innerHTML = "";
+    }, 3000);
   }
 
   function saveCount() {
     localStorage.setItem("countValue", count);
-    msgDisplay.innerHTML = "Count saved!";
+    showMsg("The Count has been Saved!");
   }
 
   function loadCount() {
     const savedCount = localStorage.getItem("countValue");
     if (savedCount !== null) {
       count = parseInt(savedCount);
-      displayMsg.innerHTML = "Count loaded!";
+      showMsg("The Count has been Loaded!");
     } else {
-      displayMsg.innerHTML = "No saved count found.";
+      showMsg("No Saved Count Found.");
     }
+    displayCount.classList.remove("positive");
+    displayCount.classList.remove("negative");
     updateCount();
   }
 });

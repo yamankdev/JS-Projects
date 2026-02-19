@@ -12,23 +12,25 @@
       .font-style {
         font-family: var(--font-style);
       }
-      @utility container {
-        @apply w-[468px] m-auto mt-[30px];
-      }
-      @utility info {
-        @apply flex justify-between mb-[20px];
-      }
-      @utility score-container {
-        @apply m-[10px] text-center w-[70px] h-[60px] rounded-[3px] bg-[#8f7a66] text-[#fff];
-      }
-      @utility btn {
-        @apply bg-[#8f7a66] px-[10px] py-[5px] mb-[10px] -mr-[10px] rounded-[5px] text-white text-center;
-      }
-      @utility grid {
-        @apply w-[460px] h-[460px] bg-[#bbada0] border-[#bbada0] rounded-[6px] mt-[20px] m-auto flex flex-wrap;
-      }
-      @utility square {
-        @apply size-[100px] w-[100px] m-[7px] rounded-[3px] bg-[#eee4da] text-[#afa192] text-center text-[60px] font-bold leading-[96px] m-auto;
+      @layer utilities {
+        .container {
+          @apply w-[468px] m-auto mt-[30px];
+        }
+        .info {
+          @apply flex justify-between mb-[20px];
+        }
+        .score-container {
+          @apply m-[10px] text-center w-[70px] h-[60px] rounded-[3px] bg-[#8f7a66] text-[#fff];
+        }
+        .btn {
+          @apply bg-[#8f7a66] px-[10px] py-[5px] mb-[10px] -mr-[10px] rounded-[5px] text-white text-center;
+        }
+        .grid {
+          @apply w-[460px] h-[460px] bg-[#bbada0] border-[#bbada0] rounded-[6px] mt-[20px] m-auto flex flex-wrap;
+        }
+        .square {
+          @apply size-[100px] w-[100px] m-[7px] rounded-[3px] bg-[#eee4da] text-[#afa192] text-center text-[60px] font-bold leading-[96px] m-auto;
+        }
       }
     </style>
     <style>

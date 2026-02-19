@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let squares = [];
   let score = 0;
 
-  //   Creating board
+  //   Create board
   const createBoard = () => {
     for (let i = 0; i < width * width; i++) {
       const square = document.createElement("DIV");
@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   createBoard();
 
+  //  Delete board
   const deleteBoard = () => {
     for (let i = 0; i < width * width; i++) {
       const square = document.querySelector(".square");
@@ -78,4 +79,118 @@ document.addEventListener("DOMContentLoaded", () => {
     generate2();
   };
   newGameBtn.addEventListener("click", newGame);
+
+  //   Move right
+  const moveRight = () => {
+    for (let i = 0; i < width * width; i++) {
+      if (i % 4 === 0) {
+        let totalOne = squares[i].innerHTML;
+        let totalTwo = squares[i + 1].innerHTML;
+        let totalThree = squares[i + 2].innerHTML;
+        let totalFour = squares[i + 3].innerHTML;
+        let row = [
+          parseInt(totalOne),
+          parseInt(totalTwo),
+          parseInt(totalThree),
+          parseInt(totalFour),
+        ];
+        // console.log(row);
+
+        let filteredRow = row.filter((num) => num);
+        // console.log(filteredRow);
+        let missing = 4 - filteredRow.length;
+        let zeros = Array(missing).fill(0);
+        let newRow = zeros.concat(filteredRow);
+        // console.log(newRow);
+
+        squares[i].innerHTML = newRow[0];
+        squares[i + 1].innerHTML = newRow[1];
+        squares[i + 2].innerHTML = newRow[2];
+        squares[i + 3].innerHTML = newRow[3];
+      }
+    }
+  };
+
+  //   Move left
+  const moveLeft = () => {
+    for (let i = 0; i < width * width; i++) {
+      if (i % 4 === 0) {
+        let total1 = squares[i].innerHTML;
+        let total2 = squares[i + 1].innerHTML;
+        let total3 = squares[i + 2].innerHTML;
+        let total4 = squares[i + 3].innerHTML;
+        let row = [
+          parseInt(total1),
+          parseInt(total2),
+          parseInt(total3),
+          parseInt(total4),
+        ];
+
+        let filteredRow = row.filter((num) => num);
+        let missing = 4 - filteredRow.length;
+        let zeros = Array(missing).fill(0);
+        let newRow = filteredRow.concat(zeros);
+        // console.log(newRow);
+
+        squares[i].innerHTML = newRow[0];
+        squares[i + 1].innerHTML = newRow[1];
+        squares[i + 2].innerHTML = newRow[2];
+        squares[i + 3].innerHTML = newRow[3];
+      }
+    }
+  };
+
+  //   Move up
+  const moveUp = () => {
+    for (let i = 0; i < width; i++) {
+      let total1 = squares[i].innerHTML;
+      let total2 = squares[i + width].innerHTML;
+      let total3 = squares[i + width * 2].innerHTML;
+      let total4 = squares[i + width * 3].innerHTML;
+      let col = [
+        parseInt(total1),
+        parseInt(total2),
+        parseInt(total3),
+        parseInt(total4),
+      ];
+      //   console.log(col);
+
+      let filteredCol = col.filter((num) => num);
+      let missing = 4 - filteredCol.length;
+      let zeros = Array(missing).fill(0);
+      let newCol = filteredCol.concat(zeros);
+      //   console.log(newCol);
+
+      squares[i].innerHTML = newCol[0];
+      squares[i + width].innerHTML = newCol[1];
+      squares[i + width * 2].innerHTML = newCol[2];
+      squares[i + width * 3].innerHTML = newCol[3];
+    }
+  };
+
+  //   Move down
+  const moveDown = () => {
+    for (let i = 0; i < width; i++) {
+      let total1 = squares[i].innerHTML;
+      let total2 = squares[i + width].innerHTML;
+      let total3 = squares[i + width * 2].innerHTML;
+      let total4 = squares[i + width * 3].innerHTML;
+      let col = [
+        parseInt(total1),
+        parseInt(total2),
+        parseInt(total3),
+        parseInt(total4),
+      ];
+
+      let filteredCol = col.filter((num) => num);
+      let missing = 4 - filteredCol.length;
+      let zeros = Array(missing).fill(0);
+      let newCol = zeros.concat(filteredCol);
+
+      squares[i].innerHTML = newCol[0];
+      squares[i + width].innerHTML = newCol[1];
+      squares[i + width * 2].innerHTML = newCol[2];
+      squares[i + width * 3].innerHTML = newCol[3];
+    }
+  };
 });

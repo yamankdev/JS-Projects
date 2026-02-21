@@ -4,63 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2048</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- <link href="./src/output.css" rel="stylesheet" /> -->
     <style type="text/tailwindcss">
       @theme {
-        --font-style: "Clear Sans", Helvetica, serif;
+        --font-clearSans: "Clear Sans", Helvetica, serif;
       }
-      .font-style {
-        font-family: var(--font-style);
-      }
-      @layer utilities {
-        .container {
-          @apply w-[468px] m-auto mt-[30px];
-        }
+      @layer components {
         .info {
-          @apply flex justify-between mb-[20px];
+          @apply flex justify-between px-10 py-5;
         }
         .score-container {
           @apply m-[10px] text-center w-[70px] h-[60px] rounded-[3px] bg-[#8f7a66] text-[#fff];
         }
-        .btn {
-          @apply bg-[#8f7a66] px-[10px] py-[5px] mb-[10px] -mr-[10px] rounded-[5px] text-white text-center;
-        }
-        .grid {
-          @apply w-[460px] h-[460px] bg-[#bbada0] border-[#bbada0] rounded-[6px] mt-[20px] m-auto flex flex-wrap;
-        }
         .square {
           @apply size-[100px] w-[100px] m-[7px] rounded-[3px] bg-[#eee4da] text-[#afa192] text-center text-[60px] font-bold leading-[96px] m-auto;
         }
+        .grid-box {
+          @apply flex flex-wrap w-[460px] h-[460px] bg-[#bbada0] border-[#bbada0] rounded-[6px] mt-[20px] m-auto;
+        }
       }
-    </style>
-    <style>
-      .grid {
-        display: flex;
-        flex-wrap: wrap;
+      @layer base {
+        h1 {
+          @apply p-[10px] text-[#776e65] text-[80px] font-bold leading-[56px] m-0;
+        }
+        button {
+          @apply bg-[#8f7a66] px-[10px] py-[5px] rounded-[5px] text-white text-center hover:bg-[#bbada0] hover:text-[#8f7a66] transition-colors duration-300 cursor-pointer;
+        }
+      }
+      @utility container {
+        @apply w-130 py-5 mx-auto font-clearSans;
       }
     </style>
   </head>
-  <!-- class="bg-[#faf8ef]" -->
   <body>
     <div class="container">
       <div class="info">
-        <h1
-          class="p-[10px] text-[#776e65] text-[80px] font-bold leading-[56px] m-0"
-        >
-          2048
-        </h1>
+        <h1>2048</h1>
         <div class="score-container">
           <p class="score-title text-[16px] m-0">Score</p>
-          <h1 class="score text-[30px] font-bold -mt-[5px]">0</h1>
+          <h2 class="score text-[30px] font-bold -mt-[5px]">0</h2>
         </div>
       </div>
-      <div class="flex">
-        <p class="result w-[70%] mt-[6px] px-[10px]">
-          Join the number to get <b>2048</b> tile!
-        </p>
+      <div class="flex justify-between px-12">
+        <p class="result my-auto">Join the number to get <b>2048</b> tile!</p>
         <button class="btn">New Game</button>
       </div>
-      <div class="grid"></div>
+      <div class="grid-box"></div>
     </div>
 
     <script src="script.js"></script>

@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const gridDisplay = document.querySelector(".grid");
+  const gridDisplay = document.querySelector(".grid-box");
   const scoreDisplay = document.querySelector(".score");
   const resultDisplay = document.querySelector(".result");
-  const newGameBtn = document.querySelector(".btn");
+  const newGameBtn = document.querySelector("button");
   const width = 4;
   let squares = [];
   let score = 0;
@@ -192,5 +192,94 @@ document.addEventListener("DOMContentLoaded", () => {
       squares[i + width * 2].innerHTML = newCol[2];
       squares[i + width * 3].innerHTML = newCol[3];
     }
+  };
+
+  //   Combine row numbers
+  const combineRow = () => {
+    for (let i = 0; i < 15; i++) {
+      if (squares[i].innerHTML === squares[i + 1].innerHTML) {
+        let totalVal =
+          parseInt(squares[i].innerHTML) + parseInt(squares[i + 1].innerHTML);
+        squares[i].innerHTML = totalVal;
+        squares[i + 1].innerHTML = 0;
+        score += totalVal;
+        scoreDisplay.innerHTML = score;
+      }
+    }
+    checkForWin();
+  };
+
+  //   Combine column numbers
+  const combineColumn = () => {
+    for (let i = 0; i < 12; i++) {
+      if (squares[i].innerHTML === squares[i + width].innerHTML) {
+        let totalVal =
+          parseInt(squares[i].innerHTML) +
+          parseInt(squares[i + width].innerHTML);
+        squares[i].innerHTML = totalVal;
+        squares[i + width].innerHTML = 0;
+        score += totalVal;
+        scoreDisplay.innerHTML = score;
+      }
+    }
+    checkForWin();
+  };
+
+  //   Functions to navigate through buttons
+  const control = (e) => {
+    if (e.key === "ArrowRight") {
+      keyRight();
+      //   resultDisplay.innerHTML = "Join the number to get <b>2048</b> tile!";
+    } else if (e.key === "ArrowLeft") {
+      keyLeft();
+      //   resultDisplay.innerHTML = "Join the number to get <b>2048</b> tile!";
+    } else if (e.key === "ArrowUp") {
+      keyUp();
+      //   resultDisplay.innerHTML = "Join the number to get <b>2048</b> tile!";
+    } else if (e.key === "ArrowDown") {
+      keyDown();
+      //   resultDisplay.innerHTML = "Join the number to get <b>2048</b> tile!";
+    } else {
+      //   resultDisplay.innerHTML = "Press <b>Arrow keys</b> to play the game..";
+      control();
+    }
+  };
+
+  document.addEventListener("keydown", control);
+
+  //   Arrow right button
+  const keyRight = () => {
+    moveRight();
+    combineRow();
+    moveRight();
+    generate2();
+  };
+
+  //   Arrow left button
+  const keyLeft = () => {
+    moveLeft();
+    combineRow();
+    moveLeft();
+    generate2();
+  };
+
+  //   Arrow up button
+  const keyUp = () => {
+    moveUp();
+    combineColumn();
+    moveUp();
+    generate2();
+  };
+
+  //   Arrow down button
+  const keyDown = () => {
+    moveDown();
+    combineColumn();
+    moveDown();
+    generate2();
+  };
+
+  const clear = () => {
+    clearInterval(timer);
   };
 });
